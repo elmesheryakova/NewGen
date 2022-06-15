@@ -18,7 +18,9 @@ const createElements = (courses) => {
     let card = document.createElement('div')
     card.innerHTML = `
       <p>${el.name}</p>
-      <p> от ${el.prices[0]===null ? 0 : el.prices[0]} ${el.prices[1]===null ? '' : 'до'} ${el.prices[1]===null ? '' : el.prices[1]} </p>
+      <p> от ${el.prices[0]===null ? 0 : el.prices[0]} 
+      ${el.prices[1]===null ? '' : 'до'}
+      ${el.prices[1]===null ? '' : el.prices[1]} </p>
       <hr>
     `
     document.body.append(card)
@@ -32,7 +34,7 @@ const compare = (a, b) => {
 
 const filterPrices = (arr, range) => arr.filter(el => 
   (range[1] && el.prices[0] <= range[1] || range[0] <= el.prices[0]) ||
-  (range[1] && range[0] >= el.prices[1] || range[0] <= el.prices[1])
+  (range[1] && el.prices[1] <= range[1] || range[0] <= el.prices[1])
 )
  
 createElements(filterPrices(courses.sort(compare), requiredRange3))
